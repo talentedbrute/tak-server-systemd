@@ -1,0 +1,16 @@
+[Unit]
+Description=TAK Server API Service
+Requires=takserver-messaging.service
+
+[Service]
+User=tak
+Group=tak
+ExecStart=/opt/tak/takserver.sh takserver-api.sh >& /opt/tak/logs/takserver-api-console.log 
+ExecStop=kill -9 `pgrep -f "spring.profiles.active=api"`
+KillMode=mixed
+KillSignal=9
+Restart=on-failure
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
