@@ -1,6 +1,7 @@
 [Unit]
 Description=TAK Server Plugin Service
 Requires=takserver-api.service
+DefaultDependencies=no
 
 [Service]
 User=tak

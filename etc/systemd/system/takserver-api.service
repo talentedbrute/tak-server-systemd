@@ -1,6 +1,7 @@
 [Unit]
 Description=TAK Server API Service
-After=takserver-messaging.service
+Requires=takserver-messaging.service
+DefaultDependencies=no
 
 [Service]
 User=tak

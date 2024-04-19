@@ -1,6 +1,7 @@
 [Unit]
 Description=TAK Server Retention Service
 Requires=takserver-plugin.service
+DefaultDependencies=no
 
 [Service]
 User=tak
