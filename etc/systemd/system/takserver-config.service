@@ -1,6 +1,7 @@
 [Unit]
-Description=TAK Server API Service
-After=takserver-messaging.service
+Description=TAK Server Config Service
+After=mulit-user.target
+Before=takserver-messaging.service
 
 [Service]
 User=tak

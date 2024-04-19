@@ -1,18 +1,19 @@
 [Unit]
 Description=TAK Server Messaging Service
-After=mulit-user.target
+After=takserver-config.service
 Before=takserver-api.service
 
 [Service]
 User=tak
 Group=tak
-ExecStart=/opt/tak/takserver.sh takserver-messaging.sh >& /opt/tak/logs/takserver-messaging-console.log 
+WorkingDirectory=/opt/tak
+ExecStart=/opt/tak/takserver-messaging.sh
 ExecStop=kill -9 `pgrep -f "spring.profiles.active=messaging"`
 KillMode=mixed
 KillSignal=9
 Restart=on-failure
 RestartPreventExitStatus=255
-Type=simple
+Type=exec
 
 [Install]
 WantedBy=multi-user.target
