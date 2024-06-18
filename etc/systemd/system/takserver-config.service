@@ -8,6 +8,7 @@ User=tak
 Group=tak
 WorkingDirectory=/opt/tak
 ExecStart=/opt/tak/takserver-config.sh 
+ExecStartPost=/usr/bin/timeout 60 sh -c 'while ! ss -Htln sport = :47100 | grep -q "^LISTEN.*:47100"; do sleep 1; done'
 ExecStop=kill -9 `pgrep -f "spring.profiles.active=config"`
 KillMode=mixed
 KillSignal=9
