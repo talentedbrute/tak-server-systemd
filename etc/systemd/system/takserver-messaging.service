@@ -9,7 +9,7 @@ User=tak
 Group=tak
 WorkingDirectory=/opt/tak
 ExecStart=/opt/tak/takserver-messaging.sh
-ExecStartPost=/usr/bin/timeout 120 sh -c 'while ! ss -Htln sport = :18089 | grep -q "^LISTEN.*:18089"; do sleep 1; done'
+ExecStartPost=/usr/bin/timeout 120 sh -c 'while ! ss -Htln sport = :8089 | grep -q "^LISTEN.*:8089"; do sleep 1; done'
 ExecStop=kill -9 `pgrep -f "spring.profiles.active=messaging"`
 KillMode=mixed
 KillSignal=9
