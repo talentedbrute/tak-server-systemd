@@ -7,7 +7,8 @@ Before=takserver-messaging.service
 User=tak
 Group=tak
 WorkingDirectory=/opt/tak
-ExecStart=/opt/tak/takserver-config.sh 
+EnvironmentFile=/opt/tak/takserver.conf
+ExecStart=java -server -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC -Xmx${CONFIG_MAX_HEAP}m -Dspring.profiles.active=config -Dkeystore.pkcs12.legacy -jar takserver.war 
 ExecStartPost=/usr/bin/timeout 60 sh -c 'while ! ss -Htln sport = :47100 | grep -q "^LISTEN.*:47100"; do sleep 1; done'
 ExecStop=kill -9 `pgrep -f "spring.profiles.active=config"`
 KillMode=mixed

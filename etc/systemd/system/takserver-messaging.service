@@ -8,8 +8,9 @@ DefaultDependencies=no
 User=tak
 Group=tak
 WorkingDirectory=/opt/tak
-ExecStart=/opt/tak/takserver-messaging.sh
-ExecStartPost=/usr/bin/timeout 120 sh -c 'while ! ss -Htln sport = :8089 | grep -q "^LISTEN.*:8089"; do sleep 1; done'
+EnvironmentFile=/opt/tak/takserver.conf
+ExecStart=java -server -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC -Xmx${MESSAGING_MAX_HEAP}m -Dspring.profiles.active=messaging -jar takserver.war
+ExecStartPost=/usr/bin/timeout 180 sh -c 'while ! ss -Htln sport = :8089 | grep -q "^LISTEN.*:8089"; do sleep 1; done'
 ExecStop=kill -9 `pgrep -f "spring.profiles.active=messaging"`
 KillMode=mixed
 KillSignal=9
