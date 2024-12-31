@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ];
+if [ $(id -u) -ne 0 ];
 then
   printf "This script must be run as root\n"
   exit
