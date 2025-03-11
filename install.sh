@@ -13,7 +13,7 @@ printf "Setting up tak server environment file..."
 . /opt/tak/setenv.sh
 
 CONF_FILE="/opt/tak/takserver.conf"
-echo "JDK_JAVA_OPTIONS=$JDK_JAVA_OPTIONS" > ${CONF_FILE}
+echo "JDK_JAVA_OPTIONS=\"$JDK_JAVA_OPTIONS\"" > ${CONF_FILE}
 echo "IGNITE_HOME=$IGNITE_HOME" >> ${CONF_FILE}
 echo "TOTALRAMBYTES=$TOTALRAMBYTES" >> ${CONF_FILE}
 echo "CONFIG_MAX_HEAP=$CONFIG_MAX_HEAP" >> ${CONF_FILE}
