@@ -1,6 +1,6 @@
 [Unit]
 Description=TAK Server Config Service
-After=mulit-user.target
+After=multi-user.target
 Before=takserver-messaging.service
 
 [Service]
